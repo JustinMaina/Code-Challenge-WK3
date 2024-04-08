@@ -100,6 +100,10 @@ document.addEventListener('DOMContentLoaded', () => {
           buyTicketButton.textContent = 'Sold Out';
           buyTicketButton.disabled = true;
         }
+        else{
+          buyTicketButton.textContent = 'Buy Tickets'
+          buyTicketButton.disabled = false;
+        }
       })
       .catch(error => {
         console.error('Error buying ticket:', error);
