@@ -16,12 +16,29 @@ document.addEventListener('DOMContentLoaded', () => {
         films.forEach(film => {
           const filmItem = document.createElement('li');
           filmItem.classList.add('film', 'item');
-          filmItem.textContent = film.title;
+          const filmTitle = document.createElement('span');
+          filmTitle.textContent = film.title;
+          const deleteButton = document.createElement('button');
+          deleteButton.textContent = 'Delete';
+          deleteButton.classList.add('delete-btn');
+          filmItem.appendChild(filmTitle);
+          filmItem.appendChild(deleteButton);
           filmsList.appendChild(filmItem);
 
           // Add click event listener to each film item
-          filmItem.addEventListener('click', () => {
+          filmTitle.addEventListener('click', () => {
             fetchAndDisplayMovieDetails(film.id);
+          });
+
+          // Add event listener to delete button to remove film from the server and list
+          deleteButton.addEventListener('click', () => {
+            fetch(`http://localhost:3000/films/${film.id}`, {
+              method: 'DELETE'
+            }).then(() => {
+              filmItem.remove();
+            }).catch(error => {
+              console.error('Error deleting movie:', error);
+            });
           });
         });
       })
