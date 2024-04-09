@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
           // Add event listener to delete button to remove film from the server and list
           deleteButton.addEventListener('click', () => {
-            fetch(`http://localhost:3000/films/${film.id}`, {
+            fetch(`https://code-challenge-wk3.onrender.com/films${film.id}`, {
               method: 'DELETE'
             }).then(() => {
               filmItem.remove();
@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Function to fetch and display movie details based on film ID
   function fetchAndDisplayMovieDetails(movieId) {
-    fetch(`http://localhost:3000/films/${movieId}`)
+    fetch(`https://code-challenge-wk3.onrender.com/films/${movieId}`)
       .then(response => response.json())
       .then(movie => {
         // Update movie details in the DOM
@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Function to handle buying tickets
   function buyTicket(movieId) {
-    fetch(`http://localhost:3000/films/${movieId}`, {
+    fetch(`https://code-challenge-wk3.onrender.com/films/${movieId}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json'
